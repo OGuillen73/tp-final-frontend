@@ -1,0 +1,13 @@
+/* ==========================================================================
+   PUNTO DE ENTRADA ÚNICO
+   Todas las páginas linkean solo este archivo. Acá se importan las
+   variables/reset/header/footer (general.css) y el CSS propio de cada
+   sección (pages/*.css). @import siempre va primero, antes que cualquier
+   otra regla.
+   ========================================================================== */
+
+    @import url('general.css');
+    @import url('pages/hero.css');
+    @import url('pages/productos.css');
+    @import url('pages/galeria.css');
+    @import url('pages/contacto.css');

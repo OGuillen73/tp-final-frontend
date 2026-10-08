@@ -1,0 +1,256 @@
+/* ==============================================
+   1. VARIABLES Y RESET
+   Centralizamos colores y tipografías acá para no repetir valores sueltos
+   (magic numbers) por todo el sitio.
+   ========================================= */
+
+    :root {
+        --color-white: #ffffff;
+        --color-HF: #f8e4d2;
+        --color-bg: #f8e4d2;
+        --color-btn: #d9102a;
+        --color-dark: #2b2323;
+        --color-black: #000000;
+
+        --font-heading: 'Cormorant Garamond', serif;
+        --font-body: 'Montserrat', sans-serif;
+
+        --max-width: 1100px
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: var(--font-body);
+        background-color: var(--color-bg);
+        color: var(--color-dark);
+        line-height: 1.1;
+        /* Flexbox en columna a nivel body: el footer siempre queda al final, incluso en páginas con poco contenido. */
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    h1, h2, h3 {
+        font-family: var(--font-heading);
+    }
+
+    img {
+        max-width: 100%; /* ninguna imagen puede romper el layout ni provocar scroll horizontal */
+        display: block;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    /*BOTONES*/
+    .btn {
+        display: inline-block;
+        text-align: center;
+        padding: 0.8rem 1.8rem;
+        border: none;
+        border-radius: 30px;
+        font-family: var(--font-body);
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .btn-primary {
+        background-color: var(--color-btn);
+        color: var(--color-white);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+        background-color: transparent;
+        color: var(--color-btn);
+        border: 2px solid var(--color-btn);
+    }
+
+    .btn-secondary:hover {
+        transform: translateY(-2px);
+    }
+
+    /*HEADER*/
+
+    header {
+        background-color: var(--color-bg);
+        padding: 1rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: var(--max-width);
+        margin: 0 auto;
+        flex-wrap: wrap;
+        gap: 1rem;
+        font-size: 1.2rem;
+    }
+
+    .nav-links{
+        display: flex;
+        gap: 3rem;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+        color: var(--color-btn);
+    }
+
+    .logo{
+        width: 15rem;
+    }
+
+    /*BODY*/
+
+    .content{
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        padding: 5rem 6rem;
+        background:url(../img/polita_hero_background.png) center center;
+        background-size: cover;
+        font-size: 1.7rem;
+    }
+
+    .content .btn{
+        margin-top: 2rem; /*lo separa del texto*/
+    }
+    
+    .image{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background:url(../img/polita_hero_imagen.png) center center;
+        background-size:cover;
+        background-repeat: no-repeat;
+        background-position: top left;
+    }
+
+    /*=====DIFUMINADO=====*/
+    .image::before{
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100px;
+        height: 100%;
+        background:linear-gradient(
+            to right,
+            #f8e4d2 0%,
+            rgba(248,228,210,.97) 10%,
+            rgba(248,228,210,.90) 20%,
+            rgba(248,228,210,.75) 35%,
+            rgba(248,228,210,.45) 55%,
+            rgba(248,228,210,.15) 75%,
+            transparent 100%
+        );
+        pointer-events: none;
+    }
+
+
+    /*FOOTER*/
+    footer {
+        background-color: var(--color-bg);
+        text-align: center;
+        padding: 1rem 0.5rem;
+        margin-top: auto; /* junto con el flex del body, empuja el footer abajo */
+    }
+
+    .myFooter{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        margin-bottom: 0.7rem;
+        font-size: 1.2rem;
+    }
+
+    .footer-social {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1.2rem;
+        margin-top: 0.7rem;
+        font-size: 1.2rem;
+    }
+
+    /*MEDIA QUERIES*/
+    @media (max-width: 768px){
+        /*HEADER*/
+        .navbar {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .nav-links{
+            gap: 1.8rem;
+        }
+
+        /*BODY*/
+        .image{
+            order: 1;
+            min-height: 45vh;
+        }
+
+        /*=====DIFUMINADO=====*/
+        .image::before{
+            left: 0;
+            top: auto;
+            bottom: 0;
+            width: 100%;
+            height: 50px;
+            background:linear-gradient(
+                to top,
+                #f8e4d2 0%,
+                rgba(248,228,210,.97) 10%,
+                rgba(248,228,210,.90) 20%,
+                rgba(248,228,210,.75) 35%,
+                rgba(248,228,210,.45) 55%,
+                rgba(248,228,210,.15) 75%,
+                transparent 100%
+            );
+        }
+
+        .content{
+            order: 2;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        h1{
+            font-size: 2.5rem;
+        }
+
+        /*FOOTER*/
+
+    }
+
+    
+
+
